@@ -1,4 +1,5 @@
 import * as restify from 'restify';
+import {ML} from '../ml'
 
 export class Server {
 
@@ -12,6 +13,8 @@ export class Server {
                     version: '1.0.0'
                 })
                 
+                const ml = new ML()
+
                 this.application.use(restify.plugins.queryParser())
 
                 this.application.listen(3000, ()=>{
@@ -20,24 +23,18 @@ export class Server {
                  
                  this.application.get('/info', 
                     (req, resp, next) => {
-                   //resp.status(400)
+                        if(req.query !== undefined && req.query.code !== undefined)
+                        {
+                            ml.authenticate(req.query.code);
+                        }
+
                     resp.json({
-                     bwoser: req.userAgent(),
-                     method: req.method,
+                     urlmessage: ml.getAccessToken(),
                      query: req.query
                     })
                    return next() // callback terminou  | é possivel ter um array de de callback e o next nes caso vai para o próximo callback | passar uma mensagem de erro como parametro no next()
                 })
-                
-                // this.application.get('/info', (req, resp, next) => {
-                //     //resp.status(400)
-                //      resp.json({
-                //       bwoser: req.userAgent(),
-                //       method: req.method,
-                //       query: req.query
-                //      })
-                //     return next() // callback terminou  | é possivel ter um array de de callback e o next nes caso vai para o próximo callback
-                //  },
+            
 
             }catch(error){
                 reject(error);

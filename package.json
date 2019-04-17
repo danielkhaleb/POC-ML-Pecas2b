@@ -13,6 +13,9 @@
     "restify": "6.3.4"
   },
   "devDependencies": {
-    "@types/restify": "5.0.6"
+    "@types/restify": "5.0.6",
+    "mercadolibre": "0.0.13",
+    "mercadolibre-node-sdk": "^1.0.3",
+    "request": "^2.88.0"
   }
 }
