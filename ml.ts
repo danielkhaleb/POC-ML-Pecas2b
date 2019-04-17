@@ -15,8 +15,10 @@ export class ML {
 
     authenticate(code) {
         const api = new Api();
-        let result = api.authenticateML(code);
-        console.log(result);
+        api.authenticateML(code).then(()=>{
+            console.log(this)
+        });
+      
 
     }
 }

@@ -9,8 +9,9 @@ class ML {
     }
     authenticate(code) {
         const api = new api_1.Api();
-        let result = api.authenticateML(code);
-        console.log(result);
+        api.authenticateML(code).then(() => {
+            console.log(this);
+        });
     }
 }
 exports.ML = ML;

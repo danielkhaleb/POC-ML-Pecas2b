@@ -1,8 +1,10 @@
 import * as request from 'request'
+import { callbackify } from 'util';
 
 export class Api {
 
-    authenticateML(code){
+    authenticateML(code): Promise<any> {
+        return new Promise((resolve, reject) => {
         const proxiedRequest = request.defaults({'proxy': "http://192.168.231.1:3128"});
         proxiedRequest.post({
             "headers": { "content-type": "application/json" },
@@ -16,8 +18,10 @@ export class Api {
             })
         }, (error, response, body) => {
             if(error) {
+                console.log(error)
                 return console.dir(error);
             }
+        
             return JSON.parse(body)
         });
 
@@ -28,5 +32,6 @@ export class Api {
         //     console.log(`err - >${err} --------`)
         // }) 
         // //console.log(`token - >${meliObject.accessToken}`)
-    }
+    });
+}
 }
