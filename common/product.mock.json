@@ -1,0 +1,21 @@
+{
+    "title":"Teste Pecas POC ML 2",
+    "category_id":"MLB3530",
+    "price":10,
+    "currency_id":"BRL",
+    "available_quantity":1,
+    "buying_mode":"buy_it_now",
+    "listing_type_id":"gold_special",
+    "description": "Iphone teste",
+    "video_id": "https://www.youtube.com/watch?v=lDJaDxm-dv0",
+    "attributes": [
+    { "id" : "ITEM_CONDITION", "value_id": "2230581"} 
+    ],
+    "sale_terms":[
+    {"id": "WARRANTY_TYPE", "value_id": "2230279" },
+    {"id": "WARRANTY_TIME", "value_name": "90 dias"}
+    ],
+    "pictures":[
+    {"source":"http://www.rumoautopecas.com.br/arquivos/suspensao-img.png?v=635840022841400000"}
+    ]
+    }

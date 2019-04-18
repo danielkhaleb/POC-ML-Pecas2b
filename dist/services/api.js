@@ -4,7 +4,8 @@ const request = require("request");
 class Api {
     authenticateML(code) {
         return new Promise((resolve, reject) => {
-            const proxiedRequest = request.defaults({ 'proxy': "http://192.168.231.1:3128" });
+            //const proxiedRequest = request.defaults({'proxy': "http://192.168.231.1:3128"});
+            const proxiedRequest = request;
             proxiedRequest.post({
                 "headers": { "content-type": "application/json" },
                 "url": "https://api.mercadolibre.com/oauth/token",
@@ -18,9 +19,9 @@ class Api {
             }, (error, response, body) => {
                 if (error) {
                     console.log(error);
-                    return console.dir(error);
+                    reject(error);
                 }
-                return JSON.parse(body);
+                resolve(body);
             });
             // meliObject.authorize(code, "http://localhost:3000/info", (err, body, res) => {
             //     console.log(`res - >${res} --------`)
@@ -28,6 +29,23 @@ class Api {
             //     console.log(`err - >${err} --------`)
             // }) 
             // //console.log(`token - >${meliObject.accessToken}`)
+        });
+    }
+    postProduct(product, accessToken) {
+        return new Promise((resolve, reject) => {
+            //const proxiedRequest = request.defaults({'proxy': "http://192.168.231.1:3128"});
+            const proxiedRequest = request;
+            proxiedRequest.post({
+                "headers": { "content-type": "application/json" },
+                "url": `https://api.mercadolibre.com/items?access_token=${accessToken}`,
+                "body": JSON.stringify(product)
+            }, (error, response, body) => {
+                if (error) {
+                    console.log(error);
+                    reject(error);
+                }
+                resolve(body);
+            });
         });
     }
 }
